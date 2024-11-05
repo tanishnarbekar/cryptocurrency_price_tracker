@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency Price Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .price {
+            color: green;  /* Set price text color to green */
+            font-size: 24px;  /* Optional: Increase font size */
+            font-weight: bold;  /* Optional: Make it bold */
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cryptocurrency Price Tracker</h1>
+    <form action="/get_price" method="POST">
+        <input type="text" name="crypto" placeholder="Enter cryptocurrency name" required>
+        <input type="submit" value="Get Price">
+    </form>
+
+    {% if price is not none %}
+        <h2 class="price">The current price of {{ crypto }} is ${{ price }}</h2>
+    {% elif price is none and crypto %}
+        <h2 style="color: red;">Cryptocurrency not found!</h2>
+    {% endif %}
+</body>
+</html>
